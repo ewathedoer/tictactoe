@@ -1,0 +1,181 @@
+/* pen in creation */
+body {
+  color: #fff;
+}
+.game-board {
+  height: 100vh;
+}
+.game-name {
+  height: 10%;
+  background-color: #03a9f4;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+.board-area {
+  height: 75%;
+  background-color: #b3e5fc;
+  position: relative;
+  text-align: center;
+}
+.settings {
+  height: 15%;
+  background-color: #607d8b;
+}
+h1 {
+  margin: 0;
+}
+.board-box {
+  position: absolute;
+  width: 33.33%;
+  height: 33.33%;
+  display: table;
+}
+.board-box span {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 5em;
+}
+#one-left {
+  top: 0;
+  left: 0;
+}
+#one-middle {
+  top: 0;
+  left: 33.33%;
+}
+#one-right {
+  top: 0;
+  left: 66.66%;
+}
+#two-left {
+  top: 33.33%;
+  left: 0;
+}
+#two-middle {
+  top: 33.33%;
+  left: 33.33%;
+}
+#two-right {
+  top: 33.33%;;
+  left: 66.66%;
+}
+#three-left {
+  top: 66.66%;
+  left: 0;
+}
+#three-middle {
+  top: 66.66%;
+  left: 33.33%;
+}
+#three-right {
+  top: 66.66%;
+  left: 66.66%;
+}
+.settings {
+  position: relative;
+}
+.settings-button {
+  position: absolute;
+  width: 33.33%;
+  height: 100%;
+  text-align: center;
+  border-radius: 20px 0;
+  text-transform: uppercase;
+}
+#score {
+  top: 0;
+  left: 0;
+}
+#symbol {
+  top: 0;
+  left: 33.33%;
+}
+#mode {
+  top: 0;
+  left: 66.66%;
+}
+.border-right {
+  border-right: 3px solid white;
+}
+.border-top {
+  border-top: 3px solid white;
+}
+.border-wide {
+  border-right: 3px solid black;
+}
+h2 {
+  font-size: 1.2em;
+}
+
+/* media queries */
+@media screen and (min-width: 1025px){
+  .board-area {
+    height: 90%;
+    width: 60%;
+  }
+  .settings {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    left: 60%;
+    bottom: 0;
+    height: auto;
+  }
+  #score {
+    right: 0;
+    width: 100%;
+    height: 33.33%;
+  }
+  #symbol {
+    right: 0;
+    width: 100%;
+    height: 33.33%;
+    top: 33.33%;
+    left: 0;
+  }
+  #mode {
+    right: 0;
+    width: 100%;
+    height: 33.33%;
+    left: 0;
+    top: 66.66%;
+  }
+  .border-wide {
+    border-right: 0;
+  }
+  .border-settings-top {
+    border-top: 3px solid black;
+  }
+  .settings-button {
+    border-radius: 0 20px;
+  }
+}
+@media screen and (max-width: 767px) and (orientation: landscape)  {
+  .game-name {
+    padding:0;
+    font-size: 1.8em;
+  }
+}
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+.modal-dialog {
+  color: #000;
+}
+.modal-content {
+  background-color: pink;
+  text-align: center;
+  font-size: 1.2em;
+}
+.modal-header h4 {
+  font-size: 2em;
+  color: #fff;
+}
+#symbol-choice .btn {
+  padding: 0.5em 1em;
+  font-size: 1.5em;
+  margin-bottom:1.5em;
+}
