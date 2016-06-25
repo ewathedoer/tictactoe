@@ -36,39 +36,42 @@ h1 {
   vertical-align: middle;
   font-size: 5em;
 }
-#one-left {
+.board-box span.winner {
+  color: red;
+}
+#box-0-0 {
   top: 0;
   left: 0;
 }
-#one-middle {
+#box-0-1 {
   top: 0;
   left: 33.33%;
 }
-#one-right {
+#box-0-2 {
   top: 0;
   left: 66.66%;
 }
-#two-left {
+#box-1-0 {
   top: 33.33%;
   left: 0;
 }
-#two-middle {
+#box-1-1 {
   top: 33.33%;
   left: 33.33%;
 }
-#two-right {
+#box-1-2 {
   top: 33.33%;;
   left: 66.66%;
 }
-#three-left {
+#box-2-0 {
   top: 66.66%;
   left: 0;
 }
-#three-middle {
+#box-2-1 {
   top: 66.66%;
   left: 33.33%;
 }
-#three-right {
+#box-2-2 {
   top: 66.66%;
   left: 66.66%;
 }
