@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>Tic Tac Toe</title>
+  <meta name="author" content="Designed and coded by the doer.">
+  <meta name="description" content="The project created during Free Code Camp course according to Tic Tac Toe specification">
+  <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="symbol-choice" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Tic Tac Toe</h4>
+        </div>
+        <div class="modal-body">
+          <p>Choose the sign you want to play with</p>
+        </div>
+
+       <button id="o" type="button" class="btn btn-default" data-dismiss="modal">O</button>
+       <span> or </span>
+       <button id="x" type="button" class="btn btn-default" data-dismiss="modal">X</button>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- board-->
+  <section class="game-board">
+    <div class="game-name">
+      <h1>Tic Tac Toe</h1>
+      <h4 id="turn"></h4>
+    </div>
+    <div class="board-area">
+      <div id="one-left" class="board-box border-right"><span>1</span></div>
+      <div id="one-middle" class="board-box border-right"><span>2</span></div>
+      <div id="one-right" class="board-box"><span>3</span></div>
+      <div id="two-left" class="board-box border-right border-top"><span>4</span></div>
+      <div id="two-middle" class="board-box border-right border-top"><span>5</span></div>
+      <div id="two-right" class="board-box border-top"><span>6</span></div>
+      <div id="three-left" class="board-box border-right border-top"><span>7</span></div>
+      <div id="three-middle" class="board-box border-right border-top"><span>8</span></div>
+      <div id="three-right" class="board-box border-top"><span>9</span></div>
+    </div>
+
+    <!-- setings buttons-->
+    <div class="settings">
+      <div id="score" class="settings-button border-wide">
+        <h2>score</h2>
+      </div>
+      <div id="symbol" class="settings-button border-wide border-settings-top">
+        <h2>symbol</h2>
+      </div>
+      <div id="mode" class="settings-button border-settings-top">
+        <h2>mode</h2>
+      </div>
+    </div>
+  </section> <!-- board -->
+  
+  <!-- js -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  <script src="main.js"></script>
+</body>  
+</html>   
