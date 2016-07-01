@@ -16,14 +16,34 @@
         <div class="modal-header">
           <h4 class="modal-title">Tic Tac Toe</h4>
         </div>
+        
         <div class="modal-body">
+          <!-- mode -->
+          <p>You will play with</p>
+          <div class="radio">
+            <label>
+              <input type="radio" name="mode" class="mode" value="baby" checked>
+              a baby
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="mode" class="mode" value="defender">
+              a defender
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="mode" class="mode" value="attacker">
+              an attacker 
+            </label>
+          </div>
+          
           <p>Choose the sign you want to play with</p>
-        </div>
-
-       <button id="o" type="button" class="btn btn-default" data-dismiss="modal">O</button>
-       <span> or </span>
-       <button id="x" type="button" class="btn btn-default" data-dismiss="modal">X</button>
-
+          <button id="o" type="button" class="btn btn-default" data-dismiss="modal">O</button>
+          <span> or </span>
+          <button id="x" type="button" class="btn btn-default" data-dismiss="modal">X</button>
+        </div> <!-- /.modal-body -->
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
@@ -49,12 +69,15 @@
     <div class="settings">
       <div id="score" class="settings-button border-wide">
         <h2>score</h2>
+        <p id="score-info"></p>
       </div>
       <div id="symbol" class="settings-button border-wide border-settings-top">
         <h2>symbol</h2>
+        <p id="symbol-info"></p>
       </div>
       <div id="mode" class="settings-button border-settings-top">
         <h2>mode</h2>
+        <p id="mode-info"></p>
       </div>
     </div>
   </section> <!-- board -->

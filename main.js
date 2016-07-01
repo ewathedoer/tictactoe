@@ -6,6 +6,8 @@ var turn = "U"; // user starts each time
 var gameBoard = [[EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY]];
+var score = {U:0, C:0};
+var mode = "baby";
 
 function displayGameBoard() {
   for (var x = 0; x <= 2; x++) {
@@ -82,17 +84,21 @@ function checkGameBoardComplete() {
   
   if (complete) {
     $("#turn").text("Game finished");
+    
     if (winner === null) {
       $("#emotion").text("Good job!");
       $("#winner").text("It's a draw!");
     } else if (winner[0] == user) {
       $("#emotion").text("Congratulations!");
       $("#winner").text("You won!");
+      score.U += 1;
     } else {
       $("#emotion").text("Sorry, you lost...");
       $("#winner").text("Better luck next time!");
+      score.C += 1;
     }
-     
+    
+    $("#score-info").text("U:" + score.U + ", C:" + score.C);
     $("#final-info").modal();
   }
   
@@ -137,6 +143,8 @@ function checkGameWinner() {
 
 $(document).ready(function() {
   $("#symbol-choice").modal();
+  $("#score-info").text("U:" + score.U + ", C:" + score.C);
+  $("#mode-info").text(mode);
   
   // assign the symbol for a user and a computer
   $("#o").on("click", function() {
@@ -144,13 +152,20 @@ $(document).ready(function() {
     computer = "X";
     displayGameBoard();
     displayTurnInfo();
+    $("#symbol-info").text("O");
+    mode = $(".mode:checked").val();
+    $("#mode-info").text(mode);
   });
   $("#x").on("click", function() {
     user = "X";
     computer = "O";
     displayGameBoard();
     displayTurnInfo();
+    $("#symbol-info").text("X");
+    mode = $(".mode:checked").val();
+    $("#mode-info").text(mode);
   });
+  
   // replay 
   $("#replay").on("click", function() {
     // remove winning line class
