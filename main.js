@@ -36,7 +36,6 @@ function getRandomInt(min, max) {
 function compiMove() {
   // checking if any move is still possible 
   if (checkGameBoardComplete()) {
-    $("#turn").text("Game finished");
     return false;
   }
   
@@ -53,6 +52,10 @@ function compiMove() {
   gameBoard[x][y] = computer;
   // displaying gameBoard with a changed box
   displayGameBoard();
+  // check if compi won
+  if (checkGameBoardComplete()) {
+    return false;
+  }
   
   // give the turn back to a user
   turn = "U";
@@ -61,13 +64,38 @@ function compiMove() {
 
 function checkGameBoardComplete() {
   var complete = true;
-  for (var i=0; i<=2; i++) {
-    for (var j=0; j<=2; j++) {
-      if (gameBoard[i][j] == EMPTY) {
-        complete = false;
+  // block the game board if sb already won
+  var winner = checkGameWinner();
+  if (winner === null) {
+    for (var i=0; i<=2; i++) {
+      for (var j=0; j<=2; j++) {
+        if (gameBoard[i][j] == EMPTY) {
+          complete = false;
+        }
       }
     }
   }
+  else {
+    // displaying gameBoard with a winner info
+    displayGameBoard();
+  }
+  
+  if (complete) {
+    $("#turn").text("Game finished");
+    if (winner === null) {
+      $("#emotion").text("Good job!");
+      $("#winner").text("It's a draw!");
+    } else if (winner[0] == user) {
+      $("#emotion").text("Congratulations!");
+      $("#winner").text("You won!");
+    } else {
+      $("#emotion").text("Sorry, you lost...");
+      $("#winner").text("Better luck next time!");
+    }
+     
+    $("#final-info").modal();
+  }
+  
   return complete;
 }
 
@@ -123,12 +151,26 @@ $(document).ready(function() {
     displayGameBoard();
     displayTurnInfo();
   });
+  // replay 
+  $("#replay").on("click", function() {
+    // remove winning line class
+    $(".board-box span").removeClass("winner flash animated");
+    // reset variables
+    computer = "";
+    user = "";
+    turn = "U";
+    gameBoard = [[EMPTY, EMPTY, EMPTY],
+                 [EMPTY, EMPTY, EMPTY],
+                 [EMPTY, EMPTY, EMPTY]];
+    displayGameBoard();
+    displayTurnInfo();
+    $("#symbol-choice").modal();
+  });
   
   // listening for user choices, displaying them and reacting to the move
   $(".board-box").on("click", function(){
     // checking if any move is still possible 
     if (checkGameBoardComplete()) {
-      $("#turn").text("Game finished");
       return false;
     }
     
@@ -149,8 +191,11 @@ $(document).ready(function() {
       gameBoard[x][y] = user;
       // displaying gameBoard with a changed box
       displayGameBoard();
-      // checking if with this move a user won
-      var winner = checkGameWinner();
+      // check if the game needs to be finished
+      if (checkGameBoardComplete()) {
+        // prevent compimove
+        return false;
+      }
       
       // let computer make the next move
       turn = "C";
@@ -160,8 +205,8 @@ $(document).ready(function() {
       $("#turn").text("It's occupied");
     }
     
-
     
   });
+  
   
 });

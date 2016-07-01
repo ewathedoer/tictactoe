@@ -10,11 +10,10 @@
   <link rel="stylesheet" href="animate.css">
 </head>
 <body>
-  <div id="symbol-choice" class="modal fade" tabindex="-1" role="dialog">
+  <div id="symbol-choice" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Tic Tac Toe</h4>
         </div>
         <div class="modal-body">
@@ -35,15 +34,15 @@
       <h1 id="turn">Tic Tac Toe</h1>
     </div>
     <div class="board-area">
-      <div id="box-0-0" class="board-box border-right"><span>1</span></div>
-      <div id="box-0-1" class="board-box border-right"><span>2</span></div>
-      <div id="box-0-2" class="board-box"><span>3</span></div>
-      <div id="box-1-0" class="board-box border-right border-top"><span>4</span></div>
-      <div id="box-1-1" class="board-box border-right border-top"><span>5</span></div>
-      <div id="box-1-2" class="board-box border-top"><span>6</span></div>
-      <div id="box-2-0" class="board-box border-right border-top"><span>7</span></div>
-      <div id="box-2-1" class="board-box border-right border-top"><span>8</span></div>
-      <div id="box-2-2" class="board-box border-top"><span>9</span></div>
+      <div id="box-0-0" class="board-box border-right"><span></span></div>
+      <div id="box-0-1" class="board-box border-right"><span></span></div>
+      <div id="box-0-2" class="board-box"><span></span></div>
+      <div id="box-1-0" class="board-box border-right border-top"><span></span></div>
+      <div id="box-1-1" class="board-box border-right border-top"><span></span></div>
+      <div id="box-1-2" class="board-box border-top"><span></span></div>
+      <div id="box-2-0" class="board-box border-right border-top"><span></span></div>
+      <div id="box-2-1" class="board-box border-right border-top"><span></span></div>
+      <div id="box-2-2" class="board-box border-top"><span></span></div>
     </div>
 
     <!-- setings buttons-->
@@ -59,6 +58,22 @@
       </div>
     </div>
   </section> <!-- board -->
+  
+  <!-- final modal -->
+  <div id="final-info" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 id="emotion" class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <p id="winner"></p>
+        </div>
+        <button id="replay" type="button" class="btn btn-default" data-dismiss="modal">Play again</button>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
   
   <!-- js -->
   <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
