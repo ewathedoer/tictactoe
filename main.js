@@ -99,7 +99,9 @@ function checkGameBoardComplete() {
     }
     
     $("#score-info").text("U:" + score.U + ", C:" + score.C);
-    $("#final-info").modal();
+    setTimeout(function(){
+      $("#final-info").modal();
+    }, 1000);
   }
   
   return complete;
