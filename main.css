@@ -184,7 +184,7 @@ h2 {
 #symbol-choice .btn {
   padding: 0.5em 1em;
   font-size: 1.5em;
-  margin-bottom:1.5em;
+  margin-bottom: 1.5em;
   color: #fff;
   background-color: #E91E63;
 }
@@ -193,6 +193,7 @@ h2 {
   background-color: #E91E63;
   color: #fff;
   text-transform: uppercase;
+  padding: 1em;
 }
 .radio {
   margin-bottom: 2em;
@@ -200,5 +201,30 @@ h2 {
 @media screen and (min-width: 1025px) {
   .settings-button div h2, .settings-button div p {
     font-size: 2em;
+  }
+}
+.turn-around-mobile {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 1000;
+  display: none;
+  background: url(http://theonewhodo.es/weatherapp-images/mobile-vertical.png) no-repeat;
+  background-position: center center;
+}
+.turn-around-mobile h2 {
+  padding-top: 1em;
+  color: #E91E63;
+  font-size: 3em;
+}
+@media only screen and (max-height: 415px) and (orientation: landscape){
+  .turn-around-mobile {
+    display: block;
+  }
+  section:not(.turn-around-mobile) {
+    display: none;
   }
 }
