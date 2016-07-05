@@ -1,2 +1,3 @@
 # tictactoe
-A tictac toe game implemented according to Free Code Camp specification.
+A tictactoe game implemented according to Free Code Camp specification.
+[Live preview](http://theonewhodo.es/tictactoe/)
