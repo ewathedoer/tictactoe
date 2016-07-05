@@ -8,6 +8,7 @@ var gameBoard = [[EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY]];
 var score = {U:0, C:0};
 var mode;
+var moveNumber = 1;
 
 function displayGameBoard() {
   for (var x = 0; x <= 2; x++) {
@@ -41,6 +42,238 @@ function compiMove() {
     return false;
   }
   
+  // checking the mode and making a move
+  switch (mode) {
+    case "baby":
+      babyMove();
+      break;
+    case "adult":
+      adultMove();
+      break;
+  }
+  
+  // displaying gameBoard with a changed box
+  displayGameBoard();
+  // check if compi won
+  if (checkGameBoardComplete()) {
+    return false;
+  }
+  
+  // give the turn back to a user
+  turn = "U";
+  displayTurnInfo();
+}
+
+// return random element from the list passed as the parameter, used in strategy modes
+function getRandomElement(list) {
+  var index = getRandomInt(0, list.length);
+  return list[index];
+}
+
+function getBestMove() {
+  var optionsList = [];
+  var goldPicks = [];
+
+  // building OPTIONSLIST
+  // ATTACKING
+  // checking if there is no user in line
+  if (gameBoard[0][0] !== user && gameBoard[1][1] !== user && gameBoard[2][2] !== user) {
+    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    var emptyFields = [];
+
+    if (gameBoard[0][0] !== computer) {
+      emptyFields.push([0,0]);
+    }
+    if (gameBoard[1][1] !== computer) {
+      emptyFields.push([1,1]);
+    }
+    if (gameBoard[2][2] !== computer) {
+      emptyFields.push([2,2]);
+    }
+    
+    if (emptyFields.length == 2) {
+      optionsList.push(getRandomElement(emptyFields));
+    } else if (emptyFields.length == 1) {
+      // the best move (one move missing to the victory) goes to goldPicks
+      goldPicks.push(emptyFields[0]);
+    }
+  }
+  
+  if (gameBoard[0][2] !== user && gameBoard[1][1] !== user && gameBoard[2][0] !== user) {
+    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    var emptyFields = [];
+
+    if (gameBoard[0][2] !== computer) {
+      emptyFields.push([0,2]);
+    }
+    if (gameBoard[1][1] !== computer) {
+      emptyFields.push([1,1]);
+    }
+    if (gameBoard[2][0] !== computer) {
+      emptyFields.push([2,0]);
+    }
+    
+    if (emptyFields.length == 2) {
+      optionsList.push(getRandomElement(emptyFields));
+    } else if (emptyFields.length == 1) {
+      // the best move (one move missing to the victory) goes to goldPicks
+      goldPicks.push(emptyFields[0]);
+    }
+  }
+  
+  for (var i=0; i<=2; i++) {
+    if (gameBoard[i][0] !== user && gameBoard[i][1] !== user && gameBoard[i][2] !== user) {
+      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      var emptyFields = [];
+
+      if (gameBoard[i][0] !== computer) {
+        emptyFields.push([i,0]);
+      }
+      if (gameBoard[i][1] !== computer) {
+        emptyFields.push([i,1]);
+      }
+      if (gameBoard[i][2] !== computer) {
+        emptyFields.push([i,2]);
+      }
+
+      if (emptyFields.length == 2) {
+        optionsList.push(getRandomElement(emptyFields));
+      } else if (emptyFields.length == 1) {
+        // the best move (one move missing to the victory) goes to goldPicks
+        goldPicks.push(emptyFields[0]);
+      }
+    }
+  }
+  
+  for (var i=0; i<=2; i++) {
+    if (gameBoard[0][i] !== user && gameBoard[1][i] !== user && gameBoard[2][i] !== user) {
+      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      var emptyFields = [];
+
+      if (gameBoard[0][i] !== computer) {
+        emptyFields.push([0,i]);
+      }
+      if (gameBoard[1][i] !== computer) {
+        emptyFields.push([1,i]);
+      }
+      if (gameBoard[2][i] !== computer) {
+        emptyFields.push([2,i]);
+      }
+
+      if (emptyFields.length == 2) {
+        optionsList.push(getRandomElement(emptyFields));
+      } else if (emptyFields.length == 1) {
+        // the best move (one move missing to the victory) goes to goldPicks
+        goldPicks.push(emptyFields[0]);
+      }
+    }
+  }
+  
+  // DEFENDING
+  // checking if there is only the user in line
+  if (gameBoard[0][0] !== computer && gameBoard[1][1] !== computer && gameBoard[2][2] !== computer) {
+    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    var emptyFields = [];
+
+    if (gameBoard[0][0] !== user) {
+      emptyFields.push([0,0]);
+    }
+    if (gameBoard[1][1] !== user) {
+      emptyFields.push([1,1]);
+    }
+    if (gameBoard[2][2] !== user) {
+      emptyFields.push([2,2]);
+    }
+    
+    if (emptyFields.length == 1) {
+      // compi blocks the place to survive
+      optionsList.unshift(emptyFields[0]);
+    }
+  }
+  
+  if (gameBoard[0][2] !== computer && gameBoard[1][1] !== computer && gameBoard[2][0] !== computer) {
+    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    var emptyFields = [];
+
+    if (gameBoard[0][2] !== user) {
+      emptyFields.push([0,2]);
+    }
+    if (gameBoard[1][1] !== user) {
+      emptyFields.push([1,1]);
+    }
+    if (gameBoard[2][0] !== user) {
+      emptyFields.push([2,0]);
+    }
+    
+    if (emptyFields.length == 1) {
+      // compi blocks the place to survive
+      optionsList.unshift(emptyFields[0]);
+    }
+  }
+  
+  for (var i=0; i<=2; i++) {
+    if (gameBoard[i][0] !== computer && gameBoard[i][1] !== computer && gameBoard[i][2] !== computer) {
+      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      var emptyFields = [];
+
+      if (gameBoard[i][0] !== user) {
+        emptyFields.push([i,0]);
+      }
+      if (gameBoard[i][1] !== user) {
+        emptyFields.push([i,1]);
+      }
+      if (gameBoard[i][2] !== user) {
+        emptyFields.push([i,2]);
+      }
+
+      if (emptyFields.length == 1) {
+        // compi blocks the place to survive
+        optionsList.unshift(emptyFields[0]);
+      }
+    }
+  }
+  
+  for (var i=0; i<=2; i++) {
+    if (gameBoard[0][i] !== computer && gameBoard[1][i] !== computer && gameBoard[2][i] !== computer) {
+      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      var emptyFields = [];
+
+      if (gameBoard[0][i] !== user) {
+        emptyFields.push([0,i]);
+      }
+      if (gameBoard[1][i] !== user) {
+        emptyFields.push([1,i]);
+      }
+      if (gameBoard[2][i] !== user) {
+        emptyFields.push([2,i]);
+      }
+
+      if (emptyFields.length == 1) {
+        // compi blocks the place to survive
+        optionsList.unshift(emptyFields[0]);
+      }
+    }
+  }
+
+  // using the best move from the optionsList if possible... 
+  if (goldPicks.length > 0) {
+    return goldPicks[0];
+  } else if (optionsList.length > 0) {
+    return optionsList[0];
+  } else {
+    // ...otherwise random choice
+    var x, y;
+    do {
+      x = getRandomInt(0, 3);
+      y = getRandomInt(0, 3);
+    } while (
+      gameBoard[x][y] !== EMPTY
+    );
+    return [x, y];
+  }
+}
+
+function babyMove() {
   var x, y;
   // checking if the place is empty for compi move
   do {
@@ -52,16 +285,32 @@ function compiMove() {
   
   // assigning symbol for a clicked box
   gameBoard[x][y] = computer;
-  // displaying gameBoard with a changed box
-  displayGameBoard();
-  // check if compi won
-  if (checkGameBoardComplete()) {
-    return false;
-  }
+}
+
+function adultMove() {
+  var x, y;
   
-  // give the turn back to a user
-  turn = "U";
-  displayTurnInfo();
+  // compimove number 1
+  if (moveNumber == 1) {
+    if (gameBoard[1][1] == EMPTY) {
+      x = 1;
+      y = 1;
+    } else {
+      var result = getRandomElement([[0,0],[0,2],[2,0],[2,2]]);
+      x = result[0];
+      y = result[1];
+    }
+  // compimove number 2
+  } else {
+    var result = getBestMove();
+    x = result[0];
+    y = result[1];
+  }
+
+  moveNumber += 1;
+  
+  // assigning symbol for a clicked box
+  gameBoard[x][y] = computer;
 }
 
 function checkGameBoardComplete() {
@@ -152,6 +401,7 @@ $(document).ready(function() {
   $("#o").on("click", function() {
     user = "O";
     computer = "X";
+    moveNumber = 1;
     displayGameBoard();
     displayTurnInfo();
     $("#symbol-info").text("O");
@@ -161,6 +411,7 @@ $(document).ready(function() {
   $("#x").on("click", function() {
     user = "X";
     computer = "O";
+    moveNumber = 1;
     displayGameBoard();
     displayTurnInfo();
     $("#symbol-info").text("X");
@@ -222,8 +473,6 @@ $(document).ready(function() {
       $("#turn").text("It's occupied");
     }
     
-    
   });
-  
   
 });
