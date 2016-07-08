@@ -27,7 +27,7 @@ function displayTurnInfo() {
   if (turn == "U") {
     $("#turn").text("Your turn");
   } else {
-    $("#turn").text("Your compiturn");
+    $("#turn").text("Computer's turn");
   }  
 }
 
@@ -44,11 +44,11 @@ function compiMove() {
   
   // checking the mode and making a move
   switch (mode) {
-    case "baby":
-      babyMove();
+    case "beginner":
+      beginnerMove();
       break;
-    case "adult":
-      adultMove();
+    case "advanced":
+      advancedMove();
       break;
   }
   
@@ -273,7 +273,7 @@ function getBestMove() {
   }
 }
 
-function babyMove() {
+function beginnerMove() {
   var x, y;
   // checking if the place is empty for compi move
   do {
@@ -287,7 +287,7 @@ function babyMove() {
   gameBoard[x][y] = computer;
 }
 
-function adultMove() {
+function advancedMove() {
   var x, y;
   
   // compimove number 1

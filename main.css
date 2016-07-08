@@ -1,6 +1,16 @@
 body {
   color: #fff;
 }
+
+/* headers */
+h1 {
+  margin: 0;
+}
+h2 {
+  font-size: 1.2em;
+}
+
+/* game area */
 .game-board {
   height: 100vh;
 }
@@ -16,13 +26,11 @@ body {
   background-color: #b3e5fc;
   position: relative;
   text-align: center;
+  cursor: pointer;
 }
 .settings {
   height: 15%;
   background-color: #607d8b;
-}
-h1 {
-  margin: 0;
 }
 .board-box {
   position: absolute;
@@ -74,6 +82,8 @@ h1 {
   top: 66.66%;
   left: 66.66%;
 }
+
+/* settings */
 .settings {
   position: relative;
 }
@@ -102,6 +112,8 @@ h1 {
   top: 0;
   left: 66.66%;
 }
+
+/* layout styling */
 .border-right {
   border-right: 3px solid white;
 }
@@ -111,8 +123,58 @@ h1 {
 .border-wide {
   border-right: 3px solid black;
 }
-h2 {
+
+/* bootstrap modals */
+.modal-dialog {
+  color: #000;
+}
+.modal-content {
+  background-color: pink;
+  text-align: center;
   font-size: 1.2em;
+}
+.modal-header h4 {
+  font-size: 2em;
+  color: #fff;
+}
+#symbol-choice .btn {
+  padding: 0.5em 1em;
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+  color: #fff;
+  background-color: #E91E63;
+}
+#replay {
+  margin-bottom: 2em;
+  background-color: #E91E63;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 1em;
+}
+.radio {
+  margin-bottom: 2em;
+}
+.more-air-top {
+  margin-top: 3em;
+}
+
+/* turn around device on mobile */
+.turn-around-mobile {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 1000;
+  display: none;
+  background: url(http://theonewhodo.es/weatherapp-images/mobile-vertical.png) no-repeat;
+  background-position: center center;
+}
+.turn-around-mobile h2 {
+  padding-top: 1em;
+  color: #E91E63;
+  font-size: 3em;
 }
 
 /* media queries */
@@ -169,56 +231,10 @@ h2 {
     font-size: 1.5em;
   }
 }
-.modal-dialog {
-  color: #000;
-}
-.modal-content {
-  background-color: pink;
-  text-align: center;
-  font-size: 1.2em;
-}
-.modal-header h4 {
-  font-size: 2em;
-  color: #fff;
-}
-#symbol-choice .btn {
-  padding: 0.5em 1em;
-  font-size: 1.5em;
-  margin-bottom: 1.5em;
-  color: #fff;
-  background-color: #E91E63;
-}
-#replay {
-  margin-bottom: 2em;
-  background-color: #E91E63;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 1em;
-}
-.radio {
-  margin-bottom: 2em;
-}
 @media screen and (min-width: 1025px) {
   .settings-button div h2, .settings-button div p {
     font-size: 2em;
   }
-}
-.turn-around-mobile {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  z-index: 1000;
-  display: none;
-  background: url(http://theonewhodo.es/weatherapp-images/mobile-vertical.png) no-repeat;
-  background-position: center center;
-}
-.turn-around-mobile h2 {
-  padding-top: 1em;
-  color: #E91E63;
-  font-size: 3em;
 }
 @media only screen and (max-height: 415px) and (orientation: landscape){
   .turn-around-mobile {
@@ -226,5 +242,11 @@ h2 {
   }
   section:not(.turn-around-mobile) {
     display: none;
+  }
+  .modal-dialog {
+    display: none;
+  }
+  .fade.in {
+    background-color: transparent;
   }
 }
