@@ -47,7 +47,6 @@ h2 {
   background-color: #b3e5fc;
   position: relative;
   text-align: center;
-  cursor: pointer;
 }
 .settings {
   height: 15%;
@@ -58,6 +57,7 @@ h2 {
   width: 33.33%;
   height: 33.33%;
   display: table;
+  cursor: pointer;
 }
 .board-box span {
   display: table-cell;

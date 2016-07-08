@@ -449,7 +449,7 @@ $(document).ready(function() {
   });
   
   // listening for user choices, displaying them and reacting to the move
-  $(".board-box").on("click", function(){
+  $(".board-box").on("click touchstart", function(){
     // checking if any move is still possible 
     if (checkGameBoardComplete()) {
       return false;
