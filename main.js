@@ -484,7 +484,9 @@ $(document).ready(function() {
       setTimeout(compiMove, 2000);
     } else {
       $("#turn").text("It's occupied");
-    } 
+    }
+    // prevent default and stop propagation (clicked links)
+    return false;
   });
   
 });
