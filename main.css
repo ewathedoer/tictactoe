@@ -1,3 +1,13 @@
+/* COLOR PALETTE 
+primary text color: #fff;
+secondary text color: #b3e5fc;
+action color: #E91E63;
+primary background color: #03a9f4;
+secondary background color: #b3e5fc;
+modal background color: pink;
+settings background color: #607d8b;
+*/
+
 body {
   color: #fff;
 }
@@ -122,7 +132,7 @@ h2 {
   border-top: 3px solid white;
 }
 .border-wide {
-  border-right: 3px solid black;
+  border-right: 3px solid #b3e5fc;
 }
 
 /* bootstrap modals */
@@ -141,9 +151,11 @@ h2 {
 #symbol-choice .btn {
   padding: 0.5em 1em;
   font-size: 1.5em;
-  margin-bottom: 1.5em;
   color: #fff;
   background-color: #E91E63;
+}
+.symbol-choice-container {
+  margin-bottom: 2em;
 }
 #replay {
   margin-bottom: 2em;
@@ -215,7 +227,7 @@ h2 {
     border-right: 0;
   }
   .border-settings-top {
-    border-top: 3px solid black;
+    border-top: 3px solid #b3e5fc;
   }
   .settings-button {
     border-radius: 0 20px;
