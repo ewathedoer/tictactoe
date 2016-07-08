@@ -11,6 +11,16 @@ settings background color: #607d8b;
 body {
   color: #fff;
 }
+a {
+  color: #fff;
+}
+a:focus, a:hover, a:active {
+  color: #fff;
+  text-decoration: none;
+}
+a:focus {
+  outline: 5px auto #E91E63;
+} 
 
 /* headers */
 h1 {
