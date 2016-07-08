@@ -13,9 +13,11 @@ var moveNumber = 1;
 function displayGameBoard() {
   for (var x = 0; x <= 2; x++) {
     for (var y = 0; y <= 2; y++) {
+      // build jQuery selector
       var boxId = "#box-" + x + "-" + y + " span";
+      // write the current value of the selected gameboard field to the html element pointed by the jQuery selector
       $(boxId).html(gameBoard[x][y][0]);
-      // if there is a winner row there is symbol and "w" (from checkGameWinner)
+      // if there is a winner row, there is extra "w" added to the ""X/O (from checkGameWinner ())
       if (gameBoard[x][y].length > 1) {
         $(boxId).addClass("winner flash animated");
       }
@@ -35,6 +37,7 @@ function displayTurnInfo() {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 // choose random place in a gameBoard and assign there the symbol of the computer
 function compiMove() {
   // checking if any move is still possible 
@@ -62,7 +65,7 @@ function compiMove() {
   // give the turn back to a user
   turn = "U";
   displayTurnInfo();
-}
+} // end of compiMove function
 
 // return random element from the list passed as the parameter, used in strategy modes
 function getRandomElement(list) {
@@ -76,9 +79,10 @@ function getBestMove() {
 
   // building OPTIONSLIST
   // ATTACKING
+  
   // checking if there is no user in line
   if (gameBoard[0][0] !== user && gameBoard[1][1] !== user && gameBoard[2][2] !== user) {
-    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    // definining a variable to keep the number of empty places in a row and which row is better to choose to win
     var emptyFields = [];
 
     if (gameBoard[0][0] !== computer) {
@@ -100,7 +104,7 @@ function getBestMove() {
   }
   
   if (gameBoard[0][2] !== user && gameBoard[1][1] !== user && gameBoard[2][0] !== user) {
-    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    // definining a variable to keep the number of empty places in a row and which row is better to choose to win
     var emptyFields = [];
 
     if (gameBoard[0][2] !== computer) {
@@ -123,7 +127,7 @@ function getBestMove() {
   
   for (var i=0; i<=2; i++) {
     if (gameBoard[i][0] !== user && gameBoard[i][1] !== user && gameBoard[i][2] !== user) {
-      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      // definining a variable to keep the number of empty places in a row and which row is better to choose to win
       var emptyFields = [];
 
       if (gameBoard[i][0] !== computer) {
@@ -147,7 +151,7 @@ function getBestMove() {
   
   for (var i=0; i<=2; i++) {
     if (gameBoard[0][i] !== user && gameBoard[1][i] !== user && gameBoard[2][i] !== user) {
-      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      // definining a variable to keep the number of empty places in a row and which row is better to choose to win
       var emptyFields = [];
 
       if (gameBoard[0][i] !== computer) {
@@ -170,9 +174,10 @@ function getBestMove() {
   }
   
   // DEFENDING
+  
   // checking if there is only the user in line
   if (gameBoard[0][0] !== computer && gameBoard[1][1] !== computer && gameBoard[2][2] !== computer) {
-    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    // definining a variable to keep the number of empty places in a row and which row is better to choose to win
     var emptyFields = [];
 
     if (gameBoard[0][0] !== user) {
@@ -192,7 +197,7 @@ function getBestMove() {
   }
   
   if (gameBoard[0][2] !== computer && gameBoard[1][1] !== computer && gameBoard[2][0] !== computer) {
-    // definining a variable to check the number of empty places in a row and which row is better to choose to win
+    // definining a variable to keep the number of empty places in a row and which row is better to choose to win
     var emptyFields = [];
 
     if (gameBoard[0][2] !== user) {
@@ -213,7 +218,7 @@ function getBestMove() {
   
   for (var i=0; i<=2; i++) {
     if (gameBoard[i][0] !== computer && gameBoard[i][1] !== computer && gameBoard[i][2] !== computer) {
-      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      // definining a variable to keep the number of empty places in a row and which row is better to choose to win
       var emptyFields = [];
 
       if (gameBoard[i][0] !== user) {
@@ -235,7 +240,7 @@ function getBestMove() {
   
   for (var i=0; i<=2; i++) {
     if (gameBoard[0][i] !== computer && gameBoard[1][i] !== computer && gameBoard[2][i] !== computer) {
-      // definining a variable to check the number of empty places in a row and which row is better to choose to win
+      // definining a variable to keep the number of empty places in a row and which row is better to choose to win
       var emptyFields = [];
 
       if (gameBoard[0][i] !== user) {
@@ -275,7 +280,7 @@ function getBestMove() {
 
 function beginnerMove() {
   var x, y;
-  // checking if the place is empty for compi move
+  // checking if the place is empty for compi move; do getRandomInt until there is a free space for random move
   do {
     x = getRandomInt(0, 3);
     y = getRandomInt(0, 3);
@@ -290,6 +295,7 @@ function beginnerMove() {
 function advancedMove() {
   var x, y;
   
+  // the best move in a given situation depends on step number
   // compimove number 1
   if (moveNumber == 1) {
     if (gameBoard[1][1] == EMPTY) {
@@ -307,6 +313,7 @@ function advancedMove() {
     y = result[1];
   }
 
+  // adding the moves taken by computer
   moveNumber += 1;
   
   // assigning symbol for a clicked box
@@ -317,6 +324,7 @@ function checkGameBoardComplete() {
   var complete = true;
   // block the game board if sb already won
   var winner = checkGameWinner();
+  
   if (winner === null) {
     for (var i=0; i<=2; i++) {
       for (var j=0; j<=2; j++) {
@@ -327,10 +335,11 @@ function checkGameBoardComplete() {
     }
   }
   else {
-    // displaying gameBoard with a winner info
+    // displaying gameBoard with a winner row animation
     displayGameBoard();
   }
   
+  // final result info
   if (complete) {
     $("#turn").text("Game finished");
     
@@ -347,6 +356,7 @@ function checkGameBoardComplete() {
       score.C += 1;
     }
     
+    // displaying score
     $("#score-info").text("U:" + score.U + ", C:" + score.C);
     setTimeout(function(){
       $("#final-info").modal();
@@ -358,11 +368,11 @@ function checkGameBoardComplete() {
 
 function checkGameWinner() {
   if (gameBoard[0][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][2] && gameBoard[0][0] !== EMPTY) {
-    // adding winner symbol "w" for later animation
+    // adding winner symbol "w" for winner row animation
     gameBoard[0][0] += "w";
     gameBoard[1][1] += "w";
     gameBoard[2][2] += "w";
-    // returning a winner
+    // returning a symbol of the winner
     return gameBoard[0][0];
   }
   if (gameBoard[0][2] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][0] && gameBoard[0][2] !== EMPTY) {
@@ -423,13 +433,16 @@ $(document).ready(function() {
   $("#replay").on("click", function() {
     // remove winning line class
     $(".board-box span").removeClass("winner flash animated");
-    // reset variables
+    
+    // reset the chosen variables
     computer = "";
     user = "";
     turn = "U";
     gameBoard = [[EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY]];
+    
+    // display the board, top hints, and primary choice list modal
     displayGameBoard();
     displayTurnInfo();
     $("#symbol-choice").modal();
@@ -442,14 +455,14 @@ $(document).ready(function() {
       return false;
     }
     
-    // check if it's computer's turn, and if so ignore user's move
+    // check if it's computer's turn and if so, ignore user's move
     if (turn == "C") {
       return false;
     }
     
-    // defining which place was chosen
+    // defining which place was chosen, taking id from html attribute
     var elementId = $(this).attr("id");
-    // taking the position from the elementId string name
+    // taking the x and y (position for user's move) from the elementId (from the box's id attribute)
     var x = parseInt(elementId[4]);
     var y = parseInt(elementId[6]);
     
@@ -457,7 +470,7 @@ $(document).ready(function() {
     if (gameBoard[x][y] == EMPTY) {
       // assigning symbol for a clicked box
       gameBoard[x][y] = user;
-      // displaying gameBoard with a changed box
+      // displaying gameBoard with a chosen box marked
       displayGameBoard();
       // check if the game needs to be finished
       if (checkGameBoardComplete()) {
@@ -471,8 +484,7 @@ $(document).ready(function() {
       setTimeout(compiMove, 2000);
     } else {
       $("#turn").text("It's occupied");
-    }
-    
+    } 
   });
   
 });
