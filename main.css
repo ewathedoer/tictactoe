@@ -64,7 +64,7 @@ h2 {
   vertical-align: middle;
   font-size: 5em;
 }
-.board-box span.winner {
+.board-box .winner {
   color: #E91E63;
 }
 #box-0-0 {
@@ -191,8 +191,7 @@ h2 {
   background: #fff;
   z-index: 1000;
   display: none;
-  background: url(http://theonewhodo.es/weatherapp-images/mobile-vertical.png) no-repeat;
-  background-position: center center;
+  background: url(http://theonewhodo.es/weatherapp-images/mobile-vertical.png) no-repeat center center;
 }
 .turn-around-mobile h2 {
   padding-top: 1em;
