@@ -7,7 +7,7 @@ var gameBoard = [[EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY],
                  [EMPTY, EMPTY, EMPTY]];
 var score = {U:0, C:0};
-var mode;
+var mode = "";
 var moveNumber = 1;
 
 function displayGameBoard() {
@@ -404,7 +404,7 @@ function checkGameWinner() {
 
 $(document).ready(function() {
   $("#symbol-choice").modal();
-  $("#score-info").text("U:" + score.U + ", C:" + score.C);
+  $("#score-info").html("U:" + score.U + ", C:" + score.C);
   $("#mode-info").html(mode);
   
   // assign the symbol for a user and a computer
